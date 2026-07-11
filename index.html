@@ -1,42 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>CCA Inventory</title>
 
 <style>
 
 body{
-    font-family:Arial;
-    background:#111;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#0d0d0d;
     color:white;
     margin:40px;
 }
 
 h1{
     text-align:center;
+    font-size:48px;
+    margin-bottom:40px;
+    letter-spacing:2px;
 }
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-    gap:20px;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:30px;
+}
+
+.card-link{
+    text-decoration:none;
+    color:white;
 }
 
 .card{
-    background:#222;
-    padding:15px;
-    border-radius:10px;
-    text-align:center;
+    background:#1b1b1b;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.25s;
+    box-shadow:0 10px 20px rgba(0,0,0,.35);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 35px rgba(0,0,0,.6);
 }
 
 .card img{
     width:100%;
-    border-radius:8px;
+    aspect-ratio:3/4;
+    object-fit:cover;
+    display:block;
 }
 
 .card h3{
-    margin-top:10px;
+    margin:20px;
+    font-size:20px;
+    text-align:center;
 }
 
 </style>
@@ -49,25 +70,33 @@ h1{
 
 <div class="grid">
 
-<div class="card">
-    <img src="images/emmitt-manga.png" alt="Emmitt Smith Manga">
-    <h3>Emmitt Smith Manga</h3>
-</div>
+<a href="emmitt-smith.html" class="card-link">
+    <div class="card">
+        <img src="images/emmitt-manga.png" alt="Emmitt Smith Manga">
+        <h3>Emmitt Smith Manga</h3>
+    </div>
+</a>
 
-<div class="card">
-    <img src="images/bo-manga.png" alt="Bo Jackson Manga">
-    <h3>Bo Jackson Manga</h3>
-</div>
+<a href="bo-jackson.html" class="card-link">
+    <div class="card">
+        <img src="images/bo-manga.png" alt="Bo Jackson Manga">
+        <h3>Bo Jackson Manga</h3>
+    </div>
+</a>
 
-<div class="card">
-<img src="https://picsum.photos/300?3">
-<h3>Michael Jordan Manga</h3>
-</div>
+<a href="michael-jordan.html" class="card-link">
+    <div class="card">
+        <img src="https://picsum.photos/300?3">
+        <h3>Michael Jordan Manga</h3>
+    </div>
+</a>
 
-<div class="card">
-<img src="https://picsum.photos/300?4">
-<h3>Victor Wembanyama Manga</h3>
-</div>
+<a href="victor-wembanyama.html" class="card-link">
+    <div class="card">
+        <img src="https://picsum.photos/300?4">
+        <h3>Victor Wembanyama Manga</h3>
+    </div>
+</a>
 
 </div>
 

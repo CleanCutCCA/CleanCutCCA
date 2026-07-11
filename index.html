@@ -1,31 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>My Card Collection</title>
+
 <style>
+
 body{
     font-family:Arial;
     background:#111;
     color:white;
+    margin:40px;
+}
+
+h1{
     text-align:center;
-    padding:50px;
 }
-img{
-    width:300px;
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#222;
+    padding:15px;
     border-radius:10px;
+    text-align:center;
 }
+
+.card img{
+    width:100%;
+    border-radius:8px;
+}
+
+.card h3{
+    margin-top:10px;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<h1>Victor Wembanyama Rookie</h1>
+<h1>My Collection</h1>
 
-<img src="https://picsum.photos/300">
+<div class="grid">
 
-<p>PSA 10</p>
+<div class="card">
+<img src="https://picsum.photos/300?1">
+<h3>Michael Jordan Rookie</h3>
+</div>
 
-<p>Population: 142</p>
+<div class="card">
+<img src="https://picsum.photos/300?2">
+<h3>Kobe Bryant Topps Chrome</h3>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/300?3">
+<h3>Tom Brady Rookie</h3>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/300?4">
+<h3>Shohei Ohtani Rookie</h3>
+</div>
+
+</div>
 
 </body>
 </html>

@@ -1,342 +1,106 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CleanCut CCA | Official Collector Registry</title>
-  <meta name="description" content="CleanCut CCA — Official Collector Registry. One Design. One Owner.">
-  <link rel="icon" type="image/png" href="images/logo.png">
-  <link rel="stylesheet" href="style.css">
-</head>
+<!doctype html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CCA Inventory</title><style>
+body{font-family:Arial;background:#0d0d0d;color:#fff;margin:40px}h1{text-align:center;font-size:52px}.tag{text-align:center;color:#d4af37;margin-bottom:40px}h2{text-align:center;font-size:34px;margin-top:50px}.sub{text-align:center;color:#aaa;margin-bottom:25px}hr{border:0;border-top:2px solid #333;margin:60px 0}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px}.card-link{text-decoration:none;color:#fff}.card{background:#1b1b1b;border-radius:16px;overflow:hidden;transition:.25s;box-shadow:0 8px 20px rgba(0,0,0,.4)}.card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,.6)}.card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}.info{padding:18px}.title{font-size:20px;font-weight:bold}.serial{color:#d4af37;font-weight:bold;margin:8px 0}.owner{color:#ddd}</style></head><body>
 <body>
 
-  <!-- SPLASH SCREEN -->
-  <div id="splash-screen">
-    <img src="images/logo.png" alt="CleanCut CCA" id="splash-logo">
-  </div>
+<div id="splash">
+    <img src="images/logo.png" alt="CleanCut CCA Logo">
+</div>
 
-  <!-- SITE WRAPPER -->
-  <div id="site-content">
+<style>
 
-    <!-- HEADER -->
-    <header class="site-header">
-      <img src="images/logo.png" alt="CleanCut CCA Logo" class="header-logo">
-      <p class="tagline">ONE DESIGN &bull; ONE OWNER</p>
-      <div class="gold-divider"></div>
-      <p class="registry-label">OFFICIAL COLLECTOR REGISTRY</p>
-    </header>
+/* Splash Screen */
 
-    <!-- REGISTRY STATS -->
-    <section class="stats-bar">
-      <div class="stat">
-        <span class="stat-number">48</span>
-        <span class="stat-label">Registered Designs</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number">0</span>
-        <span class="stat-label">Verified Owners</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number">2</span>
-        <span class="stat-label">Current Seasons</span>
-      </div>
-    </section>
+#splash{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    animation:fadeOut 1s ease 2.5s forwards;
+}
 
-    <!-- SEASON ONE -->
-    <section class="season" id="season-one">
-      <div class="season-header">
-        <h2 class="season-title">Season One</h2>
-        <p class="season-subtitle">VS Collection &bull; 8 Cards</p>
-      </div>
+#splash img{
+    width:450px;
+    max-width:80%;
+    opacity:0;
+    animation:logoFade .8s ease forwards;
+}
 
-      <div class="card-grid">
+@keyframes logoFade{
+    from{
+        opacity:0;
+        transform:scale(.95);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
 
-        <a href="pages/card-1001.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/raphael-vs-shredder.png" alt="Raphael vs Shredder" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Raphael vs Shredder</h3>
-              <p class="card-serial">Serial No. 1001</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
+@keyframes fadeOut{
+    to{
+        opacity:0;
+        visibility:hidden;
+    }
+}
 
-        <a href="pages/card-1002.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/obi-wan-vs-maul.png" alt="Obi-Wan vs Maul" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Obi-Wan vs Maul</h3>
-              <p class="card-serial">Serial No. 1002</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
+</style>
 
-        <a href="pages/card-1003.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/cambridge-vs-carter.png" alt="Cambridge vs Carter" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Cambridge vs Carter</h3>
-              <p class="card-serial">Serial No. 1003</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
+<div style="text-align:center; margin-bottom:50px;">
 
-        <a href="pages/card-1004.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/batman-vs-joker.png" alt="Batman vs Joker" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Batman vs Joker</h3>
-              <p class="card-serial">Serial No. 1004</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
+    <img src="images/logo.png"
+         alt="CleanCut CCA Logo"
+         style="max-width:460px; width:90%; height:auto;">
 
-        <a href="pages/card-1005.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/tony-vs-thanos.png" alt="Tony vs Thanos" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Tony vs Thanos</h3>
-              <p class="card-serial">Serial No. 1005</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
+    <div style="
+        font-family:Arial, Helvetica, sans-serif;
+        font-size:18px;
+        font-weight:600;
+        letter-spacing:5px;
+        color:white;
+        text-transform:uppercase;
+        margin:18px 0 14px 0;">
+        ONE DESIGN • ONE OWNER
+    </div>
 
-        <a href="pages/card-1006.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/buzz-vs-zerg.png" alt="Buzz vs Zerg" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Buzz vs Zerg</h3>
-              <p class="card-serial">Serial No. 1006</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
+    <div style="
+        width:220px;
+        height:1px;
+        background:#d4af37;
+        margin:0 auto 14px auto;">
+    </div>
 
-        <a href="pages/card-1007.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/plankton-vs-spongebob.png" alt="Plankton vs SpongeBob" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Plankton vs SpongeBob</h3>
-              <p class="card-serial">Serial No. 1007</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
+    <div style="
+        font-family:Arial, Helvetica, sans-serif;
+        font-size:14px;
+        letter-spacing:3px;
+        color:#d4af37;
+        text-transform:uppercase;">
+        Official Collector Registry
+    </div>
 
-        <a href="pages/card-1008.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/magic-vs-bird.png" alt="Magic vs Bird" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Magic vs Bird</h3>
-              <p class="card-serial">Serial No. 1008</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
+</div>
 
-      </div>
-    </section>
-
-    <!-- SEASON TWO -->
-    <section class="season" id="season-two">
-      <div class="season-header">
-        <h2 class="season-title">Season Two</h2>
-        <p class="season-subtitle">Manga Collection &bull; 40 Cards</p>
-      </div>
-
-      <div class="card-grid">
-
-        <a href="pages/card-2001.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/emmitt-manga.png" alt="Emmitt" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Emmitt</h3>
-              <p class="card-serial">Serial No. 2001</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
-
-        <a href="pages/card-2002.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/brady-manga.png" alt="Brady" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Brady</h3>
-              <p class="card-serial">Serial No. 2002</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
-
-        <a href="pages/card-2003.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/carter-iverson-manga.png" alt="Carter / Iverson" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Carter / Iverson</h3>
-              <p class="card-serial">Serial No. 2003</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
-
-        <a href="pages/card-2004.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/nowitzki-manga.png" alt="Nowitzki" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Nowitzki</h3>
-              <p class="card-serial">Serial No. 2004</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
-
-        <a href="pages/card-2005.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/kobe-manga.png" alt="Kobe" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Kobe</h3>
-              <p class="card-serial">Serial No. 2005</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
-
-        <a href="pages/card-2006.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/bo-manga.png" alt="Bo" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Bo</h3>
-              <p class="card-serial">Serial No. 2006</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
-
-        <a href="pages/card-2007.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/josh-allen-manga.png" alt="Josh Allen" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Josh Allen</h3>
-              <p class="card-serial">Serial No. 2007</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
-
-        <a href="pages/card-2008.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/dez-manga.png" alt="Dez" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Dez</h3>
-              <p class="card-serial">Serial No. 2008</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
-
-        <a href="pages/card-2009.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/sweetness-manga.png" alt="Sweetness" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Sweetness</h3>
-              <p class="card-serial">Serial No. 2009</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
-
-        <a href="pages/card-2010.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/wemby-manga.png" alt="Wemby" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Wemby</h3>
-              <p class="card-serial">Serial No. 2010</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
-
-        <a href="pages/card-2011.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/brunson-manga.png" alt="Brunson" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Brunson</h3>
-              <p class="card-serial">Serial No. 2011</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
-
-        <a href="pages/card-2012.html" class="card-link">
-          <div class="card">
-            <div class="card-image-wrap">
-              <img src="images/jordan-manga.png" alt="Jordan" loading="lazy">
-            </div>
-            <div class="card-info">
-              <h3 class="card-title">Jordan</h3>
-              <p class="card-serial">Serial No. 2012</p>
-              <p class="card-owner">Current Owner: <span>Unknown</span></p>
-            </div>
-          </div>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <p>&copy; 2026 CleanCut CCA. All Rights Reserved.</p>
-    </footer>
-
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
-```
-
-That's the full `index.html`. Want me to paste the `style.css`, `script.js`, and the 20 detail page files the same way inline too, or is the download link enough for those?
+<h2>Season 1</h2><div class="sub">Original Release • 8 Cards</div><div class="grid"><a href="#" class="card-link"><div class="card"><img src="images/raphael-vs-shredder.png" alt="Raphael vs Shredder"><div class="info"><div class="title">Raphael vs Shredder</div><div class="serial">Serial Number: #1001</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/obi-wan-vs-maul.png" alt="Obi-Wan vs Maul"><div class="info"><div class="title">Obi-Wan vs Maul</div><div class="serial">Serial Number: #1002</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/cambridge-vs-carter.png" alt="Cambridge vs Carter"><div class="info"><div class="title">Cambridge vs Carter</div><div class="serial">Serial Number: #1003</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/batman-vs-joker.png" alt="Batman vs Joker"><div class="info"><div class="title">Batman vs Joker</div><div class="serial">Serial Number: #1004</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/tony-vs-thanos.png" alt="Tony vs Thanos"><div class="info"><div class="title">Tony vs Thanos</div><div class="serial">Serial Number: #1005</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/buzz-vs-zerg.png" alt="Buzz vs Zerg"><div class="info"><div class="title">Buzz vs Zerg</div><div class="serial">Serial Number: #1006</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/plankton-vs-spongebob.png" alt="Plankton vs SpongeBob"><div class="info"><div class="title">Plankton vs SpongeBob</div><div class="serial">Serial Number: #1007</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/magic-vs-bird.png" alt="Magic vs Bird"><div class="info"><div class="title">Magic vs Bird</div><div class="serial">Serial Number: #1008</div><div class="owner">Current Owner: Unknown</div></div></div></a></div>
+<hr><h2>Season 2</h2><div class="sub">Manga Collection • 12 Cards</div><div class="grid"><a href="#" class="card-link"><div class="card"><img src="images/emmitt-manga.png" alt="Emmitt"><div class="info"><div class="title">Emmitt</div><div class="serial">Serial Number: #2001</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/brady-manga.png" alt="Brady"><div class="info"><div class="title">Brady</div><div class="serial">Serial Number: #2002</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/carter-iverson-manga.png" alt="Carter / Iverson"><div class="info"><div class="title">Carter / Iverson</div><div class="serial">Serial Number: #2003</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/nowitzki-manga.png" alt="Nowitzki"><div class="info"><div class="title">Nowitzki</div><div class="serial">Serial Number: #2004</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/kobe-manga.png" alt="Kobe"><div class="info"><div class="title">Kobe</div><div class="serial">Serial Number: #2005</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/bo-manga.png" alt="Bo"><div class="info"><div class="title">Bo</div><div class="serial">Serial Number: #2006</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/josh-allen-manga.png" alt="Josh Allen"><div class="info"><div class="title">Josh Allen</div><div class="serial">Serial Number: #2007</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/dez-manga.png" alt="Dez"><div class="info"><div class="title">Dez</div><div class="serial">Serial Number: #2008</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/sweetness-manga.png" alt="Sweetness"><div class="info"><div class="title">Sweetness</div><div class="serial">Serial Number: #2009</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/wemby-manga.png" alt="Wemby"><div class="info"><div class="title">Wemby</div><div class="serial">Serial Number: #2010</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/brunson-manga.png" alt="Brunson"><div class="info"><div class="title">Brunson</div><div class="serial">Serial Number: #2011</div><div class="owner">Current Owner: Unknown</div></div></div></a>
+<a href="#" class="card-link"><div class="card"><img src="images/jordan-manga.png" alt="Jordan"><div class="info"><div class="title">Jordan</div><div class="serial">Serial Number: #2012</div><div class="owner">Current Owner: Unknown</div></div></div></a></div>
+</body></html>

@@ -46,8 +46,187 @@ body{font-family:Arial;background:#0d0d0d;color:#fff;margin:40px}h1{text-align:c
     margin-bottom:18px;
 }
 
+/* ---------- CARD STATUS SYSTEM ---------- */
+
+.card-image-wrap{
+    position:relative;
+    overflow:hidden;
+}
+
+.card-image-wrap img{
+    transition:filter .35s ease;
+}
+
+.card-image-wrap::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    opacity:0;
+    transition:opacity .35s ease;
+    z-index:1;
+    pointer-events:none;
+}
+
+.card-image-wrap::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-weight:900;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:13px;
+    color:#ffffff;
+    opacity:0;
+    transition:opacity .35s ease;
+    z-index:2;
+    pointer-events:none;
+}
+
+.card-link[data-status="claimed"] .card-image-wrap::after{ content:"CLAIMED   ✓"; }
+.card-link[data-status="coming-soon"] .card-image-wrap::after{ content:"COMING SOON"; }
+.card-link[data-status="archived"] .card-image-wrap::after{ content:"ARCHIVED"; }
+
+.card-link[data-status="claimed"]:hover .card-image-wrap img,
+.card-link[data-status="coming-soon"]:hover .card-image-wrap img,
+.card-link[data-status="archived"]:hover .card-image-wrap img{
+    filter:grayscale(100%);
+}
+
+.card-link[data-status="claimed"]:hover .card-image-wrap::before,
+.card-link[data-status="coming-soon"]:hover .card-image-wrap::before,
+.card-link[data-status="archived"]:hover .card-image-wrap::before,
+.card-link[data-status="claimed"]:hover .card-image-wrap::after,
+.card-link[data-status="coming-soon"]:hover .card-image-wrap::after,
+.card-link[data-status="archived"]:hover .card-image-wrap::after{
+    opacity:1;
+}
+
+.card-link[data-status="coming-soon"]{
+    cursor:not-allowed;
+}
+
+/* ---------- HAMBURGER MENU ---------- */
+
+#menu-toggle{
+    position:fixed;
+    top:24px;
+    right:24px;
+    width:48px;
+    height:48px;
+    background:#1b1b1b;
+    border:1px solid #2a2a2a;
+    color:#ffffff;
+    font-size:22px;
+    line-height:1;
+    border-radius:8px;
+    cursor:pointer;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .2s ease, border-color .2s ease;
+}
+
+#menu-toggle:hover{
+    background:#242424;
+    border-color:#d4af37;
+}
+
+#menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .35s ease, visibility .35s ease;
+    z-index:998;
+}
+
+#menu-overlay.overlay-visible{
+    opacity:1;
+    visibility:visible;
+}
+
+#menu-panel{
+    position:fixed;
+    top:0;
+    right:0;
+    height:100%;
+    width:320px;
+    max-width:85vw;
+    background:#0d0d0d;
+    border-left:1px solid #2a2a2a;
+    transform:translateX(100%);
+    transition:transform .4s ease;
+    z-index:999;
+    display:flex;
+    flex-direction:column;
+    padding:70px 34px;
+    gap:26px;
+    box-sizing:border-box;
+}
+
+#menu-panel.menu-open{
+    transform:translateX(0);
+}
+
+#menu-close{
+    position:absolute;
+    top:24px;
+    right:24px;
+    background:none;
+    border:none;
+    color:#ffffff;
+    font-size:20px;
+    cursor:pointer;
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+}
+
+#menu-close:hover{
+    color:#d4af37;
+}
+
+#menu-panel a{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:14px;
+    font-weight:400;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#ffffff;
+    text-decoration:none;
+    padding-bottom:12px;
+    border-bottom:1px solid #2a2a2a;
+    transition:color .2s ease;
+}
+
+#menu-panel a:hover{
+    color:#d4af37;
+}
+
+body.menu-active{
+    overflow:hidden;
+}
+
 </style></head><body>
 <body>
+
+<button id="menu-toggle" aria-label="Open menu">&#9776;</button>
+
+<div id="menu-overlay"></div>
+
+<nav id="menu-panel">
+    <button id="menu-close" aria-label="Close menu">&#10005;</button>
+    <a href="#">HOME</a>
+    <a href="#">REGISTER YOUR CARD</a>
+    <a href="#">CONTACT US</a>
+    <a href="#">JOIN CCA UPDATES</a>
+</nav>
 
 <div id="splash">
     <img src="images/logo.png" alt="CleanCut CCA Logo">
@@ -130,52 +309,94 @@ body{font-family:Arial;background:#0d0d0d;color:#fff;margin:40px}h1{text-align:c
 
 </div>
 
-<h2>Season 1</h2><div class="sub">Original Release • 8 Cards</div><div class="grid"><a href="#" class="card-link"><div class="card"><img src="images/raphael-vs-shredder.png" alt="Raphael vs Shredder"><div class="info"><div class="title">Raphael vs Shredder</div><div class="serial">#1001</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/obi-wan-vs-maul.png" alt="Obi-Wan vs Maul"><div class="info"><div class="title">Obi-Wan vs Maul</div><div class="serial">#1002</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/cambridge-vs-carter.png" alt="Cambridge vs Carter"><div class="info"><div class="title">Cambridge vs Carter</div><div class="serial">#1003</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/batman-vs-joker.png" alt="Batman vs Joker"><div class="info"><div class="title">Batman vs Joker</div><div class="serial">#1004</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/tony-vs-thanos.png" alt="Tony vs Thanos"><div class="info"><div class="title">Tony vs Thanos</div><div class="serial">#1005</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/buzz-vs-zerg.png" alt="Buzz vs Zerg"><div class="info"><div class="title">Buzz vs Zerg</div><div class="serial">#1006</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/plankton-vs-spongebob.png" alt="Plankton vs SpongeBob"><div class="info"><div class="title">Plankton vs SpongeBob</div><div class="serial">#1007</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/magic-vs-bird.png" alt="Magic vs Bird"><div class="info"><div class="title">Magic vs Bird</div><div class="serial">#1008</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a></div>
-<hr><h2>Season 2</h2><div class="sub">Manga Collection • 40 Cards</div><div class="grid"><a href="#" class="card-link"><div class="card"><img src="images/1wemby-manga.png" alt="Wemby"><div class="info"><div class="title">Wemby</div><div class="serial">#2001</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/2jeter-manga.png" alt="Derek Jeter"><div class="info"><div class="title">Derek Jeter</div><div class="serial">#2002</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/3jordan-manga.png" alt="MJ"><div class="info"><div class="title">MJ</div><div class="serial">#2003</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/4jordant-manga.png" alt="MJ Space Jam"><div class="info"><div class="title">MJ Space Jam</div><div class="serial">#2004</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/5jordan-manga.png" alt="MJ Team USA"><div class="info"><div class="title">MJ Team USA</div><div class="serial">#2005</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/6jordana-manga.png" alt="MJ All-Star"><div class="info"><div class="title">MJ All-Star</div><div class="serial">#2006</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/7vick-manga.png" alt="Michael Vick"><div class="info"><div class="title">Michael Vick</div><div class="serial">#2007</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/8dez-manga.png" alt="Dez Bryant"><div class="info"><div class="title">Dez Bryant</div><div class="serial">#2008</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/9jimmy-manga.png" alt="Jimmy Butler"><div class="info"><div class="title">Jimmy Butler</div><div class="serial">#2009</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/10chad-manga.png" alt="Ochocinco"><div class="info"><div class="title">Ochocinco</div><div class="serial">#2010</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/11jalen-manga.png" alt="Jalen Brunson"><div class="info"><div class="title">Jalen Brunson</div><div class="serial">#2011</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/12brady-manga.png" alt="Tom Brady"><div class="info"><div class="title">Tom Brady</div><div class="serial">#2012</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/13steve-manga.png" alt="Steve Smith Sr."><div class="info"><div class="title">Steve Smith Sr.</div><div class="serial">#2013</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/14rose-manga.png" alt="D-Rose"><div class="info"><div class="title">D-Rose</div><div class="serial">#2014</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/15mahomes-manga.png" alt="Patrick Mahomes"><div class="info"><div class="title">Patrick Mahomes</div><div class="serial">#2015</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/16nolan-manga.png" alt="Nolan Ryan"><div class="info"><div class="title">Nolan Ryan</div><div class="serial">#2016</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/17allen-manga.png" alt="Josh Allen"><div class="info"><div class="title">Josh Allen</div><div class="serial">#2017</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/18lamar-manga.png" alt="Lamar Jackson"><div class="info"><div class="title">Lamar Jackson</div><div class="serial">#2018</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/19lt-manga.png" alt="LT"><div class="info"><div class="title">LT</div><div class="serial">#2019</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/20barry-manga.png" alt="Barry Sanders"><div class="info"><div class="title">Barry Sanders</div><div class="serial">#2020</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/21deion-manga.png" alt="Primetime"><div class="info"><div class="title">Primetime</div><div class="serial">#2021</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/22emmitt-manga.png" alt="Emmitt Smith"><div class="info"><div class="title">Emmitt Smith</div><div class="serial">#2022</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/23lebron-manga.png" alt="LeBron James"><div class="info"><div class="title">LeBron James</div><div class="serial">#2023</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/24kobe-manga.png" alt="Kobe Bryant"><div class="info"><div class="title">Kobe Bryant</div><div class="serial">#2024</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/25griffey-manga.png" alt="Ken Griffey Jr."><div class="info"><div class="title">Ken Griffey Jr.</div><div class="serial">#2025</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/26rickey-manga.png" alt="Rickey Henderson"><div class="info"><div class="title">Rickey Henderson</div><div class="serial">#2026</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/27aicarter-manga.png" alt="Carter/Iverson"><div class="info"><div class="title">Carter/Iverson</div><div class="serial">#2027</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/28ohtani-manga.png" alt="Sho-time"><div class="info"><div class="title">Sho-time</div><div class="serial">#2028</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/29drj-manga.png" alt="Dr. J"><div class="info"><div class="title">Dr. J</div><div class="serial">#2029</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/30steph-manga.png" alt="Steph Curry"><div class="info"><div class="title">Steph Curry</div><div class="serial">#2030</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/31drik-manga.png" alt="Dirk Nowitzki"><div class="info"><div class="title">Dirk Nowitzki</div><div class="serial">#2031</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/32pg-manga.png" alt="Paul George"><div class="info"><div class="title">Paul George</div><div class="serial">#2032</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/33shaq-manga.png" alt="Shaq"><div class="info"><div class="title">Shaq</div><div class="serial">#2033</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/34bo-manga.png" alt="Bo Jackson"><div class="info"><div class="title">Bo Jackson</div><div class="serial">#2034</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/35sweet-manga.png" alt="Sweetness"><div class="info"><div class="title">Sweetness</div><div class="serial">#2035</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/36nash-manga.png" alt="Steve Nash"><div class="info"><div class="title">Steve Nash</div><div class="serial">#2036</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/37ben-manga.png" alt="Ben Wallace"><div class="info"><div class="title">Ben Wallace</div><div class="serial">#2037</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/38off-manga.png" alt="Burrow/Chase"><div class="info"><div class="title">Burrow/Chase</div><div class="serial">#2038</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/39def-manga.png" alt="Lewis/Reed"><div class="info"><div class="title">Lewis/Reed</div><div class="serial">#2039</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
-<a href="#" class="card-link"><div class="card"><img src="images/40tmac-manga.png" alt="T-Mac"><div class="info"><div class="title">T-Mac</div><div class="serial">#2040</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a></div>
+<h2>Season 1</h2><div class="sub">Original Release • 8 Cards</div><div class="grid"><a href="pages/1001.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/raphael-vs-shredder.png" alt="Raphael vs Shredder"></div><div class="info"><div class="title">Raphael vs Shredder</div><div class="serial">#1001</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/1002.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/obi-wan-vs-maul.png" alt="Obi-Wan vs Maul"></div><div class="info"><div class="title">Obi-Wan vs Maul</div><div class="serial">#1002</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/1003.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/cambridge-vs-carter.png" alt="Cambridge vs Carter"></div><div class="info"><div class="title">Cambridge vs Carter</div><div class="serial">#1003</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/1004.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/batman-vs-joker.png" alt="Batman vs Joker"></div><div class="info"><div class="title">Batman vs Joker</div><div class="serial">#1004</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/1005.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/tony-vs-thanos.png" alt="Tony vs Thanos"></div><div class="info"><div class="title">Tony vs Thanos</div><div class="serial">#1005</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/1006.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/buzz-vs-zerg.png" alt="Buzz vs Zerg"></div><div class="info"><div class="title">Buzz vs Zerg</div><div class="serial">#1006</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/1007.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/plankton-vs-spongebob.png" alt="Plankton vs SpongeBob"></div><div class="info"><div class="title">Plankton vs SpongeBob</div><div class="serial">#1007</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/1008.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/magic-vs-bird.png" alt="Magic vs Bird"></div><div class="info"><div class="title">Magic vs Bird</div><div class="serial">#1008</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a></div>
+<hr><h2>Season 2</h2><div class="sub">Manga Collection • 40 Cards</div><div class="grid"><a href="pages/2001.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/1wemby-manga.png" alt="Wemby"></div><div class="info"><div class="title">Wemby</div><div class="serial">#2001</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2002.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/2jeter-manga.png" alt="Derek Jeter"></div><div class="info"><div class="title">Derek Jeter</div><div class="serial">#2002</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2003.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/3jordan-manga.png" alt="MJ"></div><div class="info"><div class="title">MJ</div><div class="serial">#2003</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2004.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/4jordant-manga.png" alt="MJ Space Jam"></div><div class="info"><div class="title">MJ Space Jam</div><div class="serial">#2004</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2005.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/5jordan-manga.png" alt="MJ Team USA"></div><div class="info"><div class="title">MJ Team USA</div><div class="serial">#2005</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2006.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/6jordana-manga.png" alt="MJ All-Star"></div><div class="info"><div class="title">MJ All-Star</div><div class="serial">#2006</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2007.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/7vick-manga.png" alt="Michael Vick"></div><div class="info"><div class="title">Michael Vick</div><div class="serial">#2007</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2008.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/8dez-manga.png" alt="Dez Bryant"></div><div class="info"><div class="title">Dez Bryant</div><div class="serial">#2008</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2009.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/9jimmy-manga.png" alt="Jimmy Butler"></div><div class="info"><div class="title">Jimmy Butler</div><div class="serial">#2009</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2010.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/10chad-manga.png" alt="Ochocinco"></div><div class="info"><div class="title">Ochocinco</div><div class="serial">#2010</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2011.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/11jalen-manga.png" alt="Jalen Brunson"></div><div class="info"><div class="title">Jalen Brunson</div><div class="serial">#2011</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2012.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/12brady-manga.png" alt="Tom Brady"></div><div class="info"><div class="title">Tom Brady</div><div class="serial">#2012</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2013.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/13steve-manga.png" alt="Steve Smith Sr."></div><div class="info"><div class="title">Steve Smith Sr.</div><div class="serial">#2013</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2014.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/14rose-manga.png" alt="D-Rose"></div><div class="info"><div class="title">D-Rose</div><div class="serial">#2014</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2015.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/15mahomes-manga.png" alt="Patrick Mahomes"></div><div class="info"><div class="title">Patrick Mahomes</div><div class="serial">#2015</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2016.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/16nolan-manga.png" alt="Nolan Ryan"></div><div class="info"><div class="title">Nolan Ryan</div><div class="serial">#2016</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2017.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/17allen-manga.png" alt="Josh Allen"></div><div class="info"><div class="title">Josh Allen</div><div class="serial">#2017</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2018.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/18lamar-manga.png" alt="Lamar Jackson"></div><div class="info"><div class="title">Lamar Jackson</div><div class="serial">#2018</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2019.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/19lt-manga.png" alt="LT"></div><div class="info"><div class="title">LT</div><div class="serial">#2019</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2020.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/20barry-manga.png" alt="Barry Sanders"></div><div class="info"><div class="title">Barry Sanders</div><div class="serial">#2020</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2021.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/21deion-manga.png" alt="Primetime"></div><div class="info"><div class="title">Primetime</div><div class="serial">#2021</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2022.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/22emmitt-manga.png" alt="Emmitt Smith"></div><div class="info"><div class="title">Emmitt Smith</div><div class="serial">#2022</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2023.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/23lebron-manga.png" alt="LeBron James"></div><div class="info"><div class="title">LeBron James</div><div class="serial">#2023</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2024.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/24kobe-manga.png" alt="Kobe Bryant"></div><div class="info"><div class="title">Kobe Bryant</div><div class="serial">#2024</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2025.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/25griffey-manga.png" alt="Ken Griffey Jr."></div><div class="info"><div class="title">Ken Griffey Jr.</div><div class="serial">#2025</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2026.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/26rickey-manga.png" alt="Rickey Henderson"></div><div class="info"><div class="title">Rickey Henderson</div><div class="serial">#2026</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2027.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/27aicarter-manga.png" alt="Carter/Iverson"></div><div class="info"><div class="title">Carter/Iverson</div><div class="serial">#2027</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2028.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/28ohtani-manga.png" alt="Sho-time"></div><div class="info"><div class="title">Sho-time</div><div class="serial">#2028</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2029.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/29drj-manga.png" alt="Dr. J"></div><div class="info"><div class="title">Dr. J</div><div class="serial">#2029</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2030.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/30steph-manga.png" alt="Steph Curry"></div><div class="info"><div class="title">Steph Curry</div><div class="serial">#2030</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2031.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/31drik-manga.png" alt="Dirk Nowitzki"></div><div class="info"><div class="title">Dirk Nowitzki</div><div class="serial">#2031</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2032.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/32pg-manga.png" alt="Paul George"></div><div class="info"><div class="title">Paul George</div><div class="serial">#2032</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2033.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/33shaq-manga.png" alt="Shaq"></div><div class="info"><div class="title">Shaq</div><div class="serial">#2033</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2034.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/34bo-manga.png" alt="Bo Jackson"></div><div class="info"><div class="title">Bo Jackson</div><div class="serial">#2034</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2035.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/35sweet-manga.png" alt="Sweetness"></div><div class="info"><div class="title">Sweetness</div><div class="serial">#2035</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2036.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/36nash-manga.png" alt="Steve Nash"></div><div class="info"><div class="title">Steve Nash</div><div class="serial">#2036</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2037.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/37ben-manga.png" alt="Ben Wallace"></div><div class="info"><div class="title">Ben Wallace</div><div class="serial">#2037</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2038.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/38off-manga.png" alt="Burrow/Chase"></div><div class="info"><div class="title">Burrow/Chase</div><div class="serial">#2038</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2039.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/39def-manga.png" alt="Lewis/Reed"></div><div class="info"><div class="title">Lewis/Reed</div><div class="serial">#2039</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a>
+<a href="pages/2040.html" class="card-link" data-status="available"><div class="card"><div class="card-image-wrap"><img src="images/40tmac-manga.png" alt="T-Mac"></div><div class="info"><div class="title">T-Mac</div><div class="serial">#2040</div><div class="owner-label">CURRENT OWNER</div><div class="owner-name">Unknown</div></div></div></a></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+    var menuToggle = document.getElementById('menu-toggle');
+    var menuPanel = document.getElementById('menu-panel');
+    var menuOverlay = document.getElementById('menu-overlay');
+    var menuClose = document.getElementById('menu-close');
+
+    function openMenu(){
+        menuPanel.classList.add('menu-open');
+        menuOverlay.classList.add('overlay-visible');
+        document.body.classList.add('menu-active');
+    }
+
+    function closeMenu(){
+        menuPanel.classList.remove('menu-open');
+        menuOverlay.classList.remove('overlay-visible');
+        document.body.classList.remove('menu-active');
+    }
+
+    menuToggle.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+
+    document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+            closeMenu();
+        }
+    });
+
+    var comingSoonCards = document.querySelectorAll('.card-link[data-status="coming-soon"]');
+    comingSoonCards.forEach(function(card){
+        card.setAttribute('title', 'Available Soon');
+        card.addEventListener('click', function(e){
+            e.preventDefault();
+        });
+    });
+
+});
+</script>
+
 </body></html>

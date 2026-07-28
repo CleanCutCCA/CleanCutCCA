@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 <head>
@@ -33,7 +32,7 @@
 </div>
 
 <div class="form-wrap">
-    <form id="register-form">
+    <form id="register-form" action="https://formspree.io/f/mykroovn" method="POST">
 
         <div class="form-field">
             <label for="reg-name">Name</label>
@@ -73,8 +72,24 @@
 <script>
 document.getElementById('register-form').addEventListener('submit', function(e){
     e.preventDefault();
-    document.getElementById('register-note').textContent = 'Thank you. Your card has been submitted for review.';
-    this.reset();
+    var form = this;
+    var note = document.getElementById('register-note');
+    var data = new FormData(form);
+
+    fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    }).then(function(response){
+        if(response.ok){
+            note.textContent = 'Thank you. Your card has been submitted for review.';
+            form.reset();
+        } else {
+            note.textContent = 'Something went wrong. Please try again or email us directly.';
+        }
+    }).catch(function(){
+        note.textContent = 'Something went wrong. Please try again or email us directly.';
+    });
 });
 </script>
 

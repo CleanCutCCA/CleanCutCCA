@@ -23,7 +23,7 @@ var CARDS = [
   { serial: '2006', title: 'MJ All-Star', image: '6jordana-manga.png', season: 'Season Two', status: 'available', owner: 'Unknown', releasePrice: null, lastVerifiedSale: null, releaseDate: null },
   { serial: '2007', title: 'Michael Vick', image: '7vick-manga.png', season: 'Season Two', status: 'available', owner: 'Unknown', releasePrice: null, lastVerifiedSale: null, releaseDate: null },
   { serial: '2008', title: 'Dez Bryant', image: '8dez-manga.png', season: 'Season Two', status: 'available', owner: 'Unknown', releasePrice: null, lastVerifiedSale: null, releaseDate: null },
-  { serial: '2009', title: 'Jimmy Butler', image: '9jimmy-manga.png', season: 'Season Two', status: 'claimed', owner: 'D. Brock - Texas', releasePrice: null, lastVerifiedSale: null, releaseDate: null },
+  { serial: '2009', title: 'Jimmy Butler', image: '9jimmy-manga.png', season: 'Season Two', status: 'claimed', owner: 'Waco - Texas', releasePrice: null, lastVerifiedSale: null, releaseDate: null },
   { serial: '2010', title: 'Ochocinco', image: '10chad-manga.png', season: 'Season Two', status: 'available', owner: 'Unknown', releasePrice: null, lastVerifiedSale: null, releaseDate: null },
   { serial: '2011', title: 'Jalen Brunson', image: '11jalen-manga.png', season: 'Season Two', status: 'available', owner: 'Unknown', releasePrice: null, lastVerifiedSale: null, releaseDate: null },
   { serial: '2012', title: 'Tom Brady', image: '12brady-manga.png', season: 'Season Two', status: 'available', owner: 'Unknown', releasePrice: null, lastVerifiedSale: null, releaseDate: null },

@@ -1,1 +1,599 @@
 
+body{font-family:Arial;background:#0d0d0d;color:#fff;margin:40px}h1{text-align:center;font-size:52px}.tag{text-align:center;color:#d4af37;margin-bottom:40px}h2{text-align:center;font-size:34px;margin-top:50px}.sub{text-align:center;color:#aaa;margin-bottom:25px}hr{border:0;border-top:2px solid #333;margin:60px 0}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px}.card-link{text-decoration:none;color:#fff}.card{background:#1b1b1b;border-radius:16px;overflow:hidden;transition:.25s;box-shadow:0 8px 20px rgba(0,0,0,.4)}.card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,.6)}.card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}.info{padding:18px}
+
+/* ---------- CARD TEXT ---------- */
+
+.title{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:21px;
+    font-weight:900;
+    color:#ffffff;
+    letter-spacing:.3px;
+    line-height:1.2;
+    margin:16px 0 10px 0;
+}
+
+.serial{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:14px;
+    font-weight:400;
+    color:#d4af37;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:18px;
+}
+
+.owner-label{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:11px;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:#777777;
+    margin-bottom:4px;
+}
+
+.owner-name{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:15px;
+    font-weight:100;
+    font-style:italic;
+    color:#ffffff;
+    margin-bottom:18px;
+}
+
+/* ---------- CARD STATUS SYSTEM ---------- */
+
+.card-image-wrap{
+    position:relative;
+    overflow:hidden;
+}
+
+.card-image-wrap img{
+    transition:filter .35s ease;
+}
+
+.card-image-wrap::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    opacity:0;
+    transition:opacity .35s ease;
+    z-index:1;
+    pointer-events:none;
+}
+
+.card-image-wrap::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-weight:900;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:13px;
+    color:#ffffff;
+    opacity:0;
+    transition:opacity .35s ease;
+    z-index:2;
+    pointer-events:none;
+}
+
+.card-link[data-status="claimed"] .card-image-wrap::after{ content:"CLAIMED   ✓"; }
+.card-link[data-status="coming-soon"] .card-image-wrap::after{ content:"COMING SOON"; }
+.card-link[data-status="archived"] .card-image-wrap::after{ content:"ARCHIVED"; }
+
+.card-link[data-status="claimed"]:hover .card-image-wrap img,
+.card-link[data-status="coming-soon"]:hover .card-image-wrap img,
+.card-link[data-status="archived"]:hover .card-image-wrap img{
+    filter:grayscale(100%);
+}
+
+.card-link[data-status="claimed"]:hover .card-image-wrap::before,
+.card-link[data-status="coming-soon"]:hover .card-image-wrap::before,
+.card-link[data-status="archived"]:hover .card-image-wrap::before,
+.card-link[data-status="claimed"]:hover .card-image-wrap::after,
+.card-link[data-status="coming-soon"]:hover .card-image-wrap::after,
+.card-link[data-status="archived"]:hover .card-image-wrap::after{
+    opacity:1;
+}
+
+.card-link[data-status="coming-soon"]{
+    cursor:not-allowed;
+}
+
+/* ---------- HAMBURGER MENU ---------- */
+
+#menu-toggle{
+    position:fixed;
+    top:24px;
+    right:24px;
+    width:48px;
+    height:48px;
+    background:#1b1b1b;
+    border:1px solid #2a2a2a;
+    color:#ffffff;
+    font-size:22px;
+    line-height:1;
+    border-radius:8px;
+    cursor:pointer;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .2s ease, border-color .2s ease;
+}
+
+#menu-toggle:hover{
+    background:#242424;
+    border-color:#d4af37;
+}
+
+#menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .35s ease, visibility .35s ease;
+    z-index:998;
+}
+
+#menu-overlay.overlay-visible{
+    opacity:1;
+    visibility:visible;
+}
+
+#menu-panel{
+    position:fixed;
+    top:0;
+    right:0;
+    height:100%;
+    width:320px;
+    max-width:85vw;
+    background:#0d0d0d;
+    border-left:1px solid #2a2a2a;
+    transform:translateX(100%);
+    transition:transform .4s ease;
+    z-index:999;
+    display:flex;
+    flex-direction:column;
+    padding:70px 34px;
+    gap:26px;
+    box-sizing:border-box;
+}
+
+#menu-panel.menu-open{
+    transform:translateX(0);
+}
+
+#menu-close{
+    position:absolute;
+    top:24px;
+    right:24px;
+    background:none;
+    border:none;
+    color:#ffffff;
+    font-size:20px;
+    cursor:pointer;
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+}
+
+#menu-close:hover{
+    color:#d4af37;
+}
+
+#menu-panel a{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:14px;
+    font-weight:400;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#ffffff;
+    text-decoration:none;
+    padding-bottom:12px;
+    border-bottom:1px solid #2a2a2a;
+    transition:color .2s ease;
+}
+
+#menu-panel a:hover{
+    color:#d4af37;
+}
+
+body.menu-active, body.modal-open{
+    overflow:hidden;
+}
+
+/* ---------- SPLASH SCREEN ---------- */
+
+#splash{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    animation:fadeOut 1s ease 2.5s forwards;
+}
+
+#splash img{
+    width:450px;
+    max-width:80%;
+    opacity:0;
+    animation:logoFade .8s ease forwards;
+}
+
+#splash.splash-skip{
+    display:none;
+}
+
+@keyframes logoFade{
+    from{
+        opacity:0;
+        transform:scale(.95);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes fadeOut{
+    to{
+        opacity:0;
+        visibility:hidden;
+    }
+}
+
+/* ---------- SHARED HEADER (index + subpages) ---------- */
+
+.site-header-block{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.site-header-block img{
+    max-width:460px;
+    width:90%;
+    height:auto;
+}
+
+.site-header-block .tagline{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:18px;
+    font-weight:600;
+    letter-spacing:5px;
+    color:white;
+    text-transform:uppercase;
+    margin:18px 0 14px 0;
+}
+
+.site-header-block .header-divider{
+    width:220px;
+    height:1px;
+    background:#d4af37;
+    margin:0 auto 14px auto;
+}
+
+.site-header-block .registry-tag{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    letter-spacing:3px;
+    color:#d4af37;
+    text-transform:uppercase;
+}
+
+/* ---------- SUBPAGE HEADER (register / contact / updates) ---------- */
+
+.page-header{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.page-header a.home-link{
+    display:inline-block;
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#777777;
+    text-decoration:none;
+    margin-bottom:30px;
+    transition:color .2s ease;
+}
+
+.page-header a.home-link:hover{
+    color:#d4af37;
+}
+
+.page-header img{
+    width:110px;
+    margin-bottom:26px;
+}
+
+.page-header h1{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:32px;
+    font-weight:900;
+    letter-spacing:1px;
+    margin-bottom:14px;
+}
+
+.page-header .header-divider{
+    width:60px;
+    height:1px;
+    background:#d4af37;
+    margin:0 auto;
+}
+
+/* ---------- FORMS (register / updates) ---------- */
+
+.form-wrap{
+    max-width:480px;
+    margin:0 auto;
+    padding-bottom:100px;
+}
+
+.form-field{
+    margin-bottom:26px;
+}
+
+.form-field label{
+    display:block;
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:11px;
+    font-weight:400;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#777777;
+    margin-bottom:10px;
+}
+
+.form-field input,
+.form-field textarea{
+    width:100%;
+    box-sizing:border-box;
+    background:#1b1b1b;
+    border:1px solid #2a2a2a;
+    border-radius:8px;
+    padding:14px 16px;
+    color:#ffffff;
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:14px;
+    transition:border-color .2s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus{
+    outline:none;
+    border-color:#d4af37;
+}
+
+.form-field textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.form-submit{
+    width:100%;
+    background:#d4af37;
+    border:none;
+    border-radius:8px;
+    padding:16px;
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#0d0d0d;
+    cursor:pointer;
+    transition:background .2s ease;
+}
+
+.form-submit:hover{
+    background:#e6c358;
+}
+
+.form-note{
+    text-align:center;
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:12px;
+    color:#777777;
+    margin-top:18px;
+}
+
+/* ---------- CONTACT PAGE ---------- */
+
+.contact-list{
+    max-width:480px;
+    margin:0 auto;
+    padding-bottom:100px;
+}
+
+.contact-item{
+    text-align:center;
+    padding:26px 0;
+    border-bottom:1px solid #2a2a2a;
+}
+
+.contact-item:last-child{
+    border-bottom:none;
+}
+
+.contact-label{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:11px;
+    font-weight:400;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#777777;
+    margin-bottom:10px;
+}
+
+.contact-value{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:16px;
+    color:#ffffff;
+}
+
+.contact-value a{
+    color:#d4af37;
+    text-decoration:none;
+}
+
+.contact-value a:hover{
+    text-decoration:underline;
+}
+
+/* ---------- CARD MODAL ---------- */
+
+#card-modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .3s ease, visibility .3s ease;
+    z-index:1998;
+}
+
+#card-modal-overlay.modal-active{
+    opacity:1;
+    visibility:visible;
+}
+
+#card-modal{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(.95);
+    width:420px;
+    max-width:88vw;
+    max-height:86vh;
+    overflow-y:auto;
+    background:#1b1b1b;
+    border-radius:16px;
+    box-shadow:0 18px 40px rgba(0,0,0,.6);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .3s ease, visibility .3s ease, transform .3s ease;
+    z-index:1999;
+}
+
+#card-modal.modal-active{
+    opacity:1;
+    visibility:visible;
+    transform:translate(-50%,-50%) scale(1);
+}
+
+#card-modal-close{
+    position:absolute;
+    top:18px;
+    right:18px;
+    background:rgba(0,0,0,.4);
+    border:none;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    color:#ffffff;
+    font-size:16px;
+    cursor:pointer;
+    z-index:3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .2s ease;
+}
+
+#card-modal-close:hover{
+    background:rgba(212,175,55,.85);
+    color:#0d0d0d;
+}
+
+.modal-image-wrap{
+    width:100%;
+    aspect-ratio:3/4;
+    overflow:hidden;
+}
+
+.modal-image-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.modal-info{
+    padding:26px 26px 30px 26px;
+    text-align:center;
+}
+
+.modal-season{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#777777;
+    margin-bottom:10px;
+}
+
+.modal-title{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:24px;
+    font-weight:900;
+    color:#ffffff;
+    margin:0 0 14px 0;
+}
+
+.modal-divider{
+    width:60px;
+    height:1px;
+    background:#d4af37;
+    margin:0 auto 18px auto;
+}
+
+.modal-serial{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:14px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#d4af37;
+    margin-bottom:26px;
+}
+
+.modal-fields{
+    text-align:left;
+}
+
+.modal-field{
+    padding:14px 0;
+    border-top:1px solid #2a2a2a;
+}
+
+.modal-field:last-child{
+    padding-bottom:0;
+}
+
+.modal-field-label{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:10px;
+    font-weight:400;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#777777;
+    margin-bottom:4px;
+}
+
+.modal-field-value{
+    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-size:15px;
+    font-weight:100;
+    font-style:italic;
+    color:#ffffff;
+}

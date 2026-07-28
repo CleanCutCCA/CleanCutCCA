@@ -1,1 +1,82 @@
 
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Register Your Card | CleanCut CCA</title>
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button id="menu-toggle" aria-label="Open menu">&#9776;</button>
+
+<div id="menu-overlay"></div>
+
+<nav id="menu-panel">
+    <button id="menu-close" aria-label="Close menu">&#10005;</button>
+    <a href="index.html">HOME</a>
+    <a href="register.html">REGISTER YOUR CARD</a>
+    <a href="contact.html">CONTACT US</a>
+    <a href="updates.html">JOIN CCA UPDATES</a>
+</nav>
+
+<div class="page-header">
+    <a href="index.html" class="home-link">&larr; Back to Registry</a>
+    <img src="images/logo.png" alt="CleanCut CCA Logo">
+    <h1>Register Your Card</h1>
+    <div class="header-divider"></div>
+</div>
+
+<div class="form-wrap">
+    <form id="register-form">
+
+        <div class="form-field">
+            <label for="reg-name">Name</label>
+            <input type="text" id="reg-name" name="name" required>
+        </div>
+
+        <div class="form-field">
+            <label for="reg-email">Email</label>
+            <input type="email" id="reg-email" name="email" required>
+        </div>
+
+        <div class="form-field">
+            <label for="reg-card-number">Card Number</label>
+            <input type="text" id="reg-card-number" name="cardNumber" placeholder="e.g. 1001, 2007" required>
+        </div>
+
+        <div class="form-field">
+            <label for="reg-serial">Serial Number (optional)</label>
+            <input type="text" id="reg-serial" name="serialNumber">
+        </div>
+
+        <div class="form-field">
+            <label for="reg-proof">Upload Proof (optional)</label>
+            <input type="file" id="reg-proof" name="proof">
+        </div>
+
+        <button type="submit" class="form-submit">Submit</button>
+
+        <div class="form-note" id="register-note">
+            Submissions are reviewed manually before a registry status is updated.
+        </div>
+
+    </form>
+</div>
+
+<script src="script.js"></script>
+<script>
+document.getElementById('register-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('register-note').textContent = 'Thank you. Your card has been submitted for review.';
+    this.reset();
+});
+</script>
+
+</body>
+</html>

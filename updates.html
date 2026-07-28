@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 <head>
@@ -33,7 +32,7 @@
 </div>
 
 <div class="form-wrap">
-    <form id="updates-form">
+    <form id="updates-form" action="https://formspree.io/f/mkodyyel" method="POST">
 
         <div class="form-field">
             <label for="upd-name">Name</label>
@@ -58,8 +57,24 @@
 <script>
 document.getElementById('updates-form').addEventListener('submit', function(e){
     e.preventDefault();
-    document.getElementById('updates-note').textContent = 'You\'re on the list. Thank you for joining.';
-    this.reset();
+    var form = this;
+    var note = document.getElementById('updates-note');
+    var data = new FormData(form);
+
+    fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    }).then(function(response){
+        if(response.ok){
+            note.textContent = 'You\'re on the list. Thank you for joining.';
+            form.reset();
+        } else {
+            note.textContent = 'Something went wrong. Please try again or email us directly.';
+        }
+    }).catch(function(){
+        note.textContent = 'Something went wrong. Please try again or email us directly.';
+    });
 });
 </script>
 
